@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/decks'
 
@@ -11,16 +11,29 @@ class Decks extends Component {
 	render() {
 		const { decks } = this.props
 		return(
-			<View>
+			<View style={styles.container}>
 				{
 					Object.keys(decks).map(deck => (
-						<Text key={deck}>{deck}</Text>
+						<View key={deck} style={styles.deckItem}>
+							<Text style={styles.text}>{deck}</Text>
+						</View>
 					))
 				}
 			</View>
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: 'space-around',
+		alignItems: 'center'
+	},
+	text: {
+		fontSize: 30
+	}
+})
 
 function mapStateToProps({decks}){
 	return {

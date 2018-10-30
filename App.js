@@ -10,7 +10,7 @@ export default class App extends React.Component {
   render() {
     return (
     <Provider store={createStore(reducers, middleware)}>
-      <View>
+      <View style={{flex: 1}}>
       	<Decks />
       </View>
     </Provider>
