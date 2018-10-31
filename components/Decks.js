@@ -22,6 +22,7 @@ class Decks extends Component {
 					Object.keys(decks).map(deck => (
 						<TouchableOpacity key={deck} style={styles.deckItem} onPress={() => this.selectDeck(deck)}>
 							<Text style={styles.text}>{deck}</Text>
+							<Text>{decks[deck].questions.length} cards</Text>
 						</TouchableOpacity>
 					))
 				}
@@ -38,7 +39,8 @@ const styles = StyleSheet.create({
 	},
 	deckItem : {
 		backgroundColor: 'red',
-		margin: 30
+		margin: 30,
+		alignItems: 'center'
 	},
 	text: {
 		textAlign: 'center',
