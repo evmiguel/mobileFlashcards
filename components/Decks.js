@@ -9,9 +9,9 @@ class Decks extends Component {
 		this.props.dispatch(handleInitialData())
 	}
 
-	selectDeck = () => {
+	selectDeck = (deck) => {
 		//pass a name
-		this.props.navigation.navigate('Deck')
+		this.props.navigation.navigate('Deck', { name: deck})
 	}
 
 	render() {
@@ -20,7 +20,7 @@ class Decks extends Component {
 			<View style={styles.container}>
 				{
 					Object.keys(decks).map(deck => (
-						<TouchableOpacity key={deck} style={styles.deckItem} onPress={this.selectDeck}>
+						<TouchableOpacity key={deck} style={styles.deckItem} onPress={() => this.selectDeck(deck)}>
 							<Text style={styles.text}>{deck}</Text>
 						</TouchableOpacity>
 					))
