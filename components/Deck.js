@@ -23,7 +23,7 @@ class Deck extends Component {
 					<TouchableOpacity>
 						<Text>Add Question</Text>
 					</TouchableOpacity>
-					<TouchableOpacity onPress={() => this.props.navigation.navigate('Quiz')}>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('Quiz', { questions: questions })}>
 						<Text>Start Quiz</Text>
 					</TouchableOpacity>
 				</View>
