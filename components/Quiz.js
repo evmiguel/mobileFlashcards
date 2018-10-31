@@ -12,7 +12,8 @@ class Quiz extends Component {
 		numQuestions: 0,
 		currentQuestion: '',
 		currentQuestionNumber: 0,
-		showAnswer: false
+		showAnswer: false,
+		showQuestion: true
 	}
 
 	componentDidMount() {
@@ -24,10 +25,11 @@ class Quiz extends Component {
 		})
 	}
 
-	showAnswer = () => {
+	show = () => {
 		this.setState(currentState => (
 			{
-				showAnswer: !currentState.showAnswer
+				showAnswer: !currentState.showAnswer,
+				showQuestion: !currentState.showQuestion
 			}
 		))
 	}
@@ -40,9 +42,12 @@ class Quiz extends Component {
 					{
 						// TODO: Prepping for animation. This will become an Animated.View
 					}
-					<View>
-						<Text>{this.state.currentQuestion.question}</Text>
-					</View>
+					{
+						this.state.showQuestion &&
+						<View>
+							<Text>{this.state.currentQuestion.question}</Text>
+						</View>
+					}
 					{
 						this.state.showAnswer &&
 						<View>
@@ -50,8 +55,8 @@ class Quiz extends Component {
 						</View>
 					}
 
-					<TouchableOpacity onPress={this.showAnswer}>
-						<Text>Answer</Text>
+					<TouchableOpacity onPress={this.show}>
+						<Text>{this.state.showQuestion ? 'Answer' : 'Question'}</Text>
 					</TouchableOpacity>
 				</View>
 				<View>
