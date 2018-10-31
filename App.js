@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Decks from './components/Decks'
-import Deck from './components/Deck'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducers from './reducers'
 import middleware from './middleware'
 import { createStackNavigator } from 'react-navigation'
+import Decks from './components/Decks'
+import Deck from './components/Deck'
+import Quiz from './components/Quiz'
 
 const MainNavigator = createStackNavigator({
   Decks: {
@@ -14,9 +15,11 @@ const MainNavigator = createStackNavigator({
   },
   Deck: {
     screen: Deck
+  },
+  Quiz: {
+    screen: Quiz
   }
 })
-
 
 export default class App extends React.Component {
   render() {

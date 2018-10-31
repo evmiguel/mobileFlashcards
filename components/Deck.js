@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { createStackNavigator } from 'react-navigation'
 
 class Deck extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -22,7 +23,7 @@ class Deck extends Component {
 					<TouchableOpacity>
 						<Text>Add Question</Text>
 					</TouchableOpacity>
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('Quiz')}>
 						<Text>Start Quiz</Text>
 					</TouchableOpacity>
 				</View>
