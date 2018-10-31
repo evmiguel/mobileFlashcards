@@ -35,24 +35,33 @@ class Quiz extends Component {
 	render() {
 		return (
 			<View>
-				<Text>{this.state.currentQuestionIndex + 1} / {this.state.numQuestions}</Text>
-
-				{
-					// TODO: Prepping for animation. This will become an Animated.View
-				}
 				<View>
-					<Text>{this.state.currentQuestion.question}</Text>
-				</View>
-				{
-					this.state.showAnswer &&
+					<Text>{this.state.currentQuestionIndex + 1} / {this.state.numQuestions}</Text>
+					{
+						// TODO: Prepping for animation. This will become an Animated.View
+					}
 					<View>
-						<Text>{this.state.currentQuestion.answer}</Text>
+						<Text>{this.state.currentQuestion.question}</Text>
 					</View>
-				}
+					{
+						this.state.showAnswer &&
+						<View>
+							<Text>{this.state.currentQuestion.answer}</Text>
+						</View>
+					}
 
-				<TouchableOpacity onPress={this.showAnswer}>
-					<Text>Answer</Text>
-				</TouchableOpacity>
+					<TouchableOpacity onPress={this.showAnswer}>
+						<Text>Answer</Text>
+					</TouchableOpacity>
+				</View>
+				<View>
+					<TouchableOpacity>
+						<Text>Correct</Text>
+					</TouchableOpacity>
+					<TouchableOpacity>
+						<Text>Incorrect</Text>
+					</TouchableOpacity>
+				</View>
 			</View>
 		)
 	}
