@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/decks'
 
@@ -8,15 +8,20 @@ class Decks extends Component {
 	componentDidMount(){
 		this.props.dispatch(handleInitialData())
 	}
+
+	selectDeck = () => {
+		this.props.navigation.navigate('Deck')
+	}
+
 	render() {
 		const { decks } = this.props
 		return(
 			<View style={styles.container}>
 				{
 					Object.keys(decks).map(deck => (
-						<View key={deck} style={styles.deckItem}>
+						<TouchableOpacity key={deck} style={styles.deckItem} onPress={this.selectDeck}>
 							<Text style={styles.text}>{deck}</Text>
-						</View>
+						</TouchableOpacity>
 					))
 				}
 			</View>
@@ -30,7 +35,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-around',
 		alignItems: 'center'
 	},
+	deckItem : {
+		backgroundColor: 'red',
+		margin: 30
+	},
 	text: {
+		textAlign: 'center',
 		fontSize: 30
 	}
 })
