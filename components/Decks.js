@@ -10,6 +10,7 @@ class Decks extends Component {
 	}
 
 	selectDeck = () => {
+		//pass a name
 		this.props.navigation.navigate('Deck')
 	}
 
