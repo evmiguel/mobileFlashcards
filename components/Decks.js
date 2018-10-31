@@ -22,7 +22,7 @@ class Decks extends Component {
 					Object.keys(decks).map(deck => (
 						<TouchableOpacity key={deck} style={styles.deckItem} onPress={() => this.selectDeck(deck)}>
 							<Text style={styles.text}>{deck}</Text>
-							<Text>{decks[deck].questions.length} cards</Text>
+							<Text>{decks[deck].questions.length} { decks[deck].questions.length === 1 ? 'card' : 'cards' }</Text>
 						</TouchableOpacity>
 					))
 				}
