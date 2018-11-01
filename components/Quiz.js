@@ -13,7 +13,7 @@ class Quiz extends Component {
 		currentQuestion: '',
 		showAnswer: false,
 		showQuestion: true,
-		numCorrect: 0
+		numCorrect: 0,
 	}
 
 	componentDidMount() {
@@ -45,6 +45,18 @@ class Quiz extends Component {
 		this.showNextQuestion()
 	}
 
+	reset = () => {
+		const { questions } = this.props.navigation.state.params
+		this.setState({
+			numQuestions: questions.length,
+			currentQuestion: questions[0],
+			currentQuestionIndex: 0,
+			showAnswer: false,
+			showQuestion: true,
+			numCorrect: 0,
+		})
+	}
+
 	showNextQuestion = () => {
 		const { questions } = this.props.navigation.state.params
 
@@ -59,7 +71,8 @@ class Quiz extends Component {
 			// Put the question back into view if the state is showing the answer
 			if (this.state.showAnswer) { this.show() }
 		} else {
-			this.props.navigation.navigate('Score')
+			this.props.navigation.navigate('Score', { score: this.state.numCorrect / this.state.numQuestions })
+			this.reset()
 		}
 	}
 
