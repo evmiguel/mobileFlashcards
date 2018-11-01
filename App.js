@@ -8,6 +8,7 @@ import { createStackNavigator } from 'react-navigation'
 import Decks from './components/Decks'
 import Deck from './components/Deck'
 import Quiz from './components/Quiz'
+import Score from './components/Score'
 
 const MainNavigator = createStackNavigator({
   Decks: {
@@ -18,6 +19,9 @@ const MainNavigator = createStackNavigator({
   },
   Quiz: {
     screen: Quiz
+  },
+  Score: {
+    screen: Score
   }
 })
 
