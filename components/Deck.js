@@ -20,8 +20,8 @@ class Deck extends Component {
 					<Text>{questions.length} { questions.length === 1 ? 'card' : 'cards'}</Text>
 				</View>
 				<View style={styles.buttonContainer}>
-					<TouchableOpacity>
-						<Text>Add Question</Text>
+					<TouchableOpacity onPress={() => navigation.navigate('AddCard')}>
+						<Text>Add Card</Text>
 					</TouchableOpacity>
 					<TouchableOpacity onPress={() => navigation.navigate('Quiz', { questions: questions, title: navigation.state.params.name })}>
 						<Text>Start Quiz</Text>

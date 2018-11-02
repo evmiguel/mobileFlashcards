@@ -9,6 +9,7 @@ import Decks from './components/Decks'
 import Deck from './components/Deck'
 import Quiz from './components/Quiz'
 import Score from './components/Score'
+import AddCard from './components/AddCard'
 
 const MainNavigator = createStackNavigator({
   Decks: {
@@ -22,6 +23,9 @@ const MainNavigator = createStackNavigator({
   },
   Score: {
     screen: Score
+  },
+  AddCard: {
+    screen: AddCard
   }
 })
 
