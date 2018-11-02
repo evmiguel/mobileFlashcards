@@ -37,7 +37,19 @@ function getDecks(results) {
           : JSON.parse(results)
 }
 
+function addCard(results, deck, card) {
+  let decks = JSON.parse(results)
+  decks[deck].questions.push(card)
+  AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks))
+  return { deck, card }
+}
+
 export function _getDecks(){
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
     .then(getDecks)
+}
+
+export function _addCard(deck, card){
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+    .then(results => addCard(results, deck, card))
 }

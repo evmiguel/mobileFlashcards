@@ -22,7 +22,7 @@ class Deck extends Component {
 				</View>
 				<View style={styles.buttonContainer}>
 					<TextButton
-						onPress={() => navigation.navigate('AddCard')}
+						onPress={() => navigation.navigate('AddCard', { deck: navigation.state.params.name })}
 						children='Add Card' />
 					<TextButton
 						onPress={() => navigation.navigate('Quiz', { questions: questions, title: navigation.state.params.name })}
