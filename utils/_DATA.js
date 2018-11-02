@@ -1,3 +1,6 @@
+import { AsyncStorage } from 'react-native'
+export const DECK_STORAGE_KEY = 'MobileCards:decks'
+
 let decks = {
   React: {
     title: 'React',
@@ -23,10 +26,18 @@ let decks = {
   }
 }
 
+function setDummyData() {
+  AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks))
+  return decks
+}
+
+function getDecks(results) {
+  return results === null
+          ? setDummyData()
+          : JSON.parse(results)
+}
+
 export function _getDecks(){
-	return new Promise((res, rej) => {
-		setTimeout(() => {
-			res(decks)
-		},1000)
-	})
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+    .then(getDecks)
 }
