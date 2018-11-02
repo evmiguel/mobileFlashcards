@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import TextButton from './TextButton'
 
 class Quiz extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -37,12 +38,13 @@ class Quiz extends Component {
 	updateScore = (correct) => {
 		if (correct === 'correct') {
 			// update the score
-			this.setState(currentState => ({
-				numCorrect: currentState.numCorrect + 1
-			}))
+			let currNumCorrect = this.state.numCorrect
+			this.setState({
+				numCorrect: currNumCorrect + 1
+			}, this.showNextQuestion)
+		} else {
+			this.showNextQuestion()
 		}
-
-		this.showNextQuestion()
 	}
 
 	reset = () => {
@@ -96,19 +98,17 @@ class Quiz extends Component {
 							<Text>{this.state.currentQuestion.answer}</Text>
 						</View>
 					}
-
-					<TouchableOpacity onPress={this.show}>
-						<Text>{this.state.showQuestion ? 'Answer' : 'Question'}</Text>
-					</TouchableOpacity>
+					<TextButton
+						children={this.state.showQuestion ? 'Answer' : 'Question'}
+						onPress={this.show} />
 				</View>
 				<View>
-					<TouchableOpacity onPress={() => this.updateScore('correct')}>
-						<Text>Correct</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={() => this.updateScore('incorrect')}>
-						<Text>Incorrect</Text>
-					</TouchableOpacity>
-					<Text>{this.state.numCorrect}</Text>
+					<TextButton
+						children={'Correct'}
+						onPress={() => this.updateScore('correct')} />
+					<TextButton
+						children={'Incorrect'}
+						onPress={() => this.updateScore('incorrect')} />
 				</View>
 			</View>
 		)
