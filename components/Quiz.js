@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 class Quiz extends Component {
 	static navigationOptions = ({ navigation }) => {
 	    return {
-	      title: 'Quiz'
+	      title: `${navigation.state.params.title} Quiz`
 	    }
   	}
 

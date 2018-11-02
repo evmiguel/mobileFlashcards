@@ -12,7 +12,7 @@ class Deck extends Component {
 	    }
   	}
 	render(){
-		const { title, questions } = this.props
+		const { title, questions, navigation } = this.props
 		return (
 			<View style={styles.container}>
 				<View style={styles.info}>
@@ -23,7 +23,7 @@ class Deck extends Component {
 					<TouchableOpacity>
 						<Text>Add Question</Text>
 					</TouchableOpacity>
-					<TouchableOpacity onPress={() => this.props.navigation.navigate('Quiz', { questions: questions })}>
+					<TouchableOpacity onPress={() => navigation.navigate('Quiz', { questions: questions, title: navigation.state.params.name })}>
 						<Text>Start Quiz</Text>
 					</TouchableOpacity>
 				</View>
