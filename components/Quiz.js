@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import TextButton from './TextButton'
 
 class Quiz extends Component {
@@ -104,10 +104,10 @@ class Quiz extends Component {
 				</View>
 				<View>
 					<TextButton
-						children={'Correct'}
+						children='Correct'
 						onPress={() => this.updateScore('correct')} />
 					<TextButton
-						children={'Incorrect'}
+						children='Incorrect'
 						onPress={() => this.updateScore('incorrect')} />
 				</View>
 			</View>

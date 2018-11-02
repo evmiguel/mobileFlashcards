@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { createStackNavigator } from 'react-navigation'
+import TextButton from './TextButton'
 
 class Deck extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -20,12 +21,12 @@ class Deck extends Component {
 					<Text>{questions.length} { questions.length === 1 ? 'card' : 'cards'}</Text>
 				</View>
 				<View style={styles.buttonContainer}>
-					<TouchableOpacity onPress={() => navigation.navigate('AddCard')}>
-						<Text>Add Card</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={() => navigation.navigate('Quiz', { questions: questions, title: navigation.state.params.name })}>
-						<Text>Start Quiz</Text>
-					</TouchableOpacity>
+					<TextButton
+						onPress={() => navigation.navigate('AddCard')}
+						children='Add Card' />
+					<TextButton
+						onPress={() => navigation.navigate('Quiz', { questions: questions, title: navigation.state.params.name })}
+						children='Start Quiz' />
 				</View>
 			</View>
 		)
