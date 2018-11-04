@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 import TextButton from './TextButton'
+import { handleAddDeck } from '../actions/decks'
+import { connect } from 'react-redux'
 
 class AddDeck extends Component {
 	state = {
@@ -14,14 +16,16 @@ class AddDeck extends Component {
 	}
 
 	submit = () => {
-		console.log('submit')
+		const { dispatch, navigation } = this.props
+		dispatch(handleAddDeck(this.state.deckName))
+		navigation.navigate('Decks')
 	}
 
 	render() {
 		return (
 			<View style={styles.container}>
 				<Text>What is the title of your new deck?</Text>
-				<TextInput placeholder="DeckTitle"
+				<TextInput placeholder="Deck Title"
 					onChangeText={(text) => this.handleInput(text)}/>
 				<TextButton
 					onPress={this.submit}
@@ -39,4 +43,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default AddDeck
+export default connect()(AddDeck)

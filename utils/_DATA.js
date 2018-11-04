@@ -45,6 +45,18 @@ function addCard(results, deck, card) {
   return { deck, card }
 }
 
+// initialize an empty deck
+function addDeck(title) {
+  const deckObj = {
+    title: title,
+    questions: []
+  }
+
+  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
+    [title]: deckObj
+  }))
+}
+
 function deleteDeck(results, deck) {
   let decks = JSON.parse(results)
   delete decks[deck]
@@ -65,4 +77,8 @@ export function _addCard(deck, card) {
 export function _deleteDeck(deck) {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
     .then(results => deleteDeck(results, deck))
+}
+
+export function _addDeck(title) {
+  return addDeck(title).then(() => { return title })
 }
