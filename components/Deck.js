@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { createStackNavigator } from 'react-navigation'
 import TextButton from './TextButton'
+import { handleDeleteDeck } from '../actions/decks'
 
 class Deck extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -12,6 +13,13 @@ class Deck extends Component {
 	      title: name
 	    }
   	}
+
+  	deleteDeck = () => {
+  		const { dispatch, title } = this.props
+  		dispatch(handleDeleteDeck(title))
+  		this.props.navigation.goBack()
+  	}
+
 	render(){
 		const { title, questions, navigation } = this.props
 		return (
@@ -27,6 +35,9 @@ class Deck extends Component {
 					<TextButton
 						onPress={() => navigation.navigate('Quiz', { questions: questions, title: navigation.state.params.name })}
 						children='Start Quiz' />
+					<TextButton
+						onPress={this.deleteDeck}
+						children='Delete Deck' />
 				</View>
 			</View>
 		)

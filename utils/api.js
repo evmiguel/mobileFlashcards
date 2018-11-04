@@ -1,4 +1,4 @@
-import { _getDecks, _addCard } from './_DATA.js'
+import { _getDecks, _addCard, _deleteDeck } from './_DATA.js'
 
 export function getDecks() {
 	return _getDecks()
@@ -6,4 +6,8 @@ export function getDecks() {
 
 export function addCardBackend(deck, card) {
 	return _addCard(deck, card)
+}
+
+export function deleteDeckBackend(deck) {
+	return _deleteDeck(deck)
 }

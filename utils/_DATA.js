@@ -32,9 +32,10 @@ function setDummyData() {
 }
 
 function getDecks(results) {
-  return results === null
+  const data = JSON.parse(results)
+  return (Object.keys(data).length === 0 || data === null)
           ? setDummyData()
-          : JSON.parse(results)
+          : data
 }
 
 function addCard(results, deck, card) {
@@ -44,12 +45,24 @@ function addCard(results, deck, card) {
   return { deck, card }
 }
 
-export function _getDecks(){
+function deleteDeck(results, deck) {
+  let decks = JSON.parse(results)
+  delete decks[deck]
+  AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks))
+  return decks
+}
+
+export function _getDecks() {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
     .then(getDecks)
 }
 
-export function _addCard(deck, card){
+export function _addCard(deck, card) {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
     .then(results => addCard(results, deck, card))
+}
+
+export function _deleteDeck(deck) {
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+    .then(results => deleteDeck(results, deck))
 }

@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, ADD_CARD } from '../actions/decks.js'
+import { RECEIVE_DECKS, ADD_CARD, DELETE_DECK } from '../actions/decks.js'
 
 export default function decks(state = {}, action) {
 	switch(action.type) {
@@ -14,6 +14,12 @@ export default function decks(state = {}, action) {
 					...state[action.deck],
 					questions: state[action.deck].questions.concat([action.card])
 				}
+			}
+		case DELETE_DECK:
+			const newState = Object.assign({}, state)
+			delete newState[action.deck]
+			return {
+				...newState
 			}
 		default:
 			return state
