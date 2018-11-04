@@ -4,14 +4,15 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducers from './reducers'
 import middleware from './middleware'
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import Decks from './components/Decks'
 import Deck from './components/Deck'
 import Quiz from './components/Quiz'
 import Score from './components/Score'
 import AddCard from './components/AddCard'
+import AddDeck from './components/AddDeck'
 
-const MainNavigator = createStackNavigator({
+const DeckNavigator = createStackNavigator({
   Decks: {
     screen: Decks,
   },
@@ -26,6 +27,15 @@ const MainNavigator = createStackNavigator({
   },
   AddCard: {
     screen: AddCard
+  }
+})
+
+const MainNavigator = createBottomTabNavigator({
+  DeckView: {
+    screen: DeckNavigator
+  },
+  AddDeck: {
+    screen: AddDeck
   }
 })
 

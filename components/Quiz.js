@@ -73,7 +73,7 @@ class Quiz extends Component {
 			// Put the question back into view if the state is showing the answer
 			if (this.state.showAnswer) { this.show() }
 		} else {
-			this.props.navigation.navigate('Score', { score: this.state.numCorrect / this.state.numQuestions })
+			this.props.navigation.navigate('Score', { score: this.state.numCorrect })
 			this.reset()
 		}
 	}
