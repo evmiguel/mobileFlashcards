@@ -1,9 +1,10 @@
-import { getDecks, addCardBackend, deleteDeckBackend, addDeckBackend } from '../utils/api'
+import { getDecks, addCardBackend, deleteDeckBackend, addDeckBackend, completeQuizBackend } from '../utils/api'
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_CARD = 'ADD_CARD'
 export const DELETE_DECK = 'DELETE_DECK'
 export const ADD_DECK = 'ADD_DECK'
+export const COMPLETE_QUIZ = 'COMPLETE_QUIZ'
 
 function receiveDecks(decks) {
 	return {
@@ -64,4 +65,8 @@ export function handleAddDeck(title) {
 			dispatch(addDeck(title))
 		})
 	}
+}
+
+export function handleCompleteQuiz(title) {
+	return completeQuizBackend(title)
 }

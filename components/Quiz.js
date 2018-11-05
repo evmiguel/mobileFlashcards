@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import TextButton from './TextButton'
+import { handleCompleteQuiz } from '../actions/decks'
 
 class Quiz extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -60,7 +61,7 @@ class Quiz extends Component {
 	}
 
 	showNextQuestion = () => {
-		const { questions } = this.props.navigation.state.params
+		const { questions, title } = this.props.navigation.state.params
 
 		// Only go to next question if there is a next question in the array
 		// i.e. haven't hit the last index, which is equal to this.state.numQuestions - 1
@@ -73,7 +74,12 @@ class Quiz extends Component {
 			// Put the question back into view if the state is showing the answer
 			if (this.state.showAnswer) { this.show() }
 		} else {
-			this.props.navigation.navigate('Score', { score: `${((this.state.numCorrect / this.state.numQuestions) * 100).toFixed(2)}%` })
+			// If we get here, the quiz has been completed
+			// 1. Add this quiz to the list of completed quizzes
+			handleCompleteQuiz(title)
+
+			// 2. Show the score
+			this.props.navigation.navigate('Score', { score: `${((this.state.numCorrect / this.state.numQuestions) * 100).toFixed(0)}%` })
 			this.reset()
 		}
 	}
