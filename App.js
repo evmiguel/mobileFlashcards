@@ -11,10 +11,14 @@ import Quiz from './components/Quiz'
 import Score from './components/Score'
 import AddCard from './components/AddCard'
 import AddDeck from './components/AddDeck'
+import { MaterialCommunityIcons} from '@expo/vector-icons'
 
 const DeckNavigator = createStackNavigator({
   Decks: {
     screen: Decks,
+    navigationOptions: {
+      title: 'Quiz Decks'
+    }
   },
   Deck: {
     screen: Deck
@@ -32,10 +36,18 @@ const DeckNavigator = createStackNavigator({
 
 const MainNavigator = createBottomTabNavigator({
   DeckView: {
-    screen: DeckNavigator
+    screen: DeckNavigator,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />
+    }
   },
   AddDeck: {
-    screen: AddDeck
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'Add Deck',
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='plus-box' size={30} color={tintColor} />
+    }
   }
 })
 
