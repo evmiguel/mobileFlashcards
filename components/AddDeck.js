@@ -19,6 +19,7 @@ class AddDeck extends Component {
 		const { dispatch, navigation } = this.props
 		dispatch(handleAddDeck(this.state.deckName))
 		navigation.navigate('Decks')
+		this.handleInput('')
 	}
 
 	render() {
@@ -26,7 +27,8 @@ class AddDeck extends Component {
 			<View style={styles.container}>
 				<Text>What is the title of your new deck?</Text>
 				<TextInput placeholder="Deck Title"
-					onChangeText={(text) => this.handleInput(text)}/>
+					onChangeText={(text) => this.handleInput(text)}
+					value={this.state.deckName }/>
 				<TextButton
 					onPress={this.submit}
 					children='Create Deck'/>

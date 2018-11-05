@@ -38,9 +38,12 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	deckItem : {
-		backgroundColor: 'red',
-		margin: 30,
-		alignItems: 'center'
+		flex: 1,
+		width: '100%',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderColor: '#000',
+		borderWidth: StyleSheet.hairlineWidth
 	},
 	text: {
 		textAlign: 'center',
