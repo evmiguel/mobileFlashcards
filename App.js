@@ -12,6 +12,8 @@ import Score from './components/Score'
 import AddCard from './components/AddCard'
 import AddDeck from './components/AddDeck'
 import { MaterialCommunityIcons} from '@expo/vector-icons'
+import { setLocalNotification } from './utils/helpers'
+
 
 const DeckNavigator = createStackNavigator({
   Decks: {
@@ -52,6 +54,10 @@ const MainNavigator = createBottomTabNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
     <Provider store={createStore(reducers, middleware)}>

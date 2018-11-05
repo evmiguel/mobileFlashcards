@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import TextButton from './TextButton'
-import { handleCompleteQuiz } from '../actions/decks'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -75,8 +75,8 @@ class Quiz extends Component {
 			if (this.state.showAnswer) { this.show() }
 		} else {
 			// If we get here, the quiz has been completed
-			// 1. Add this quiz to the list of completed quizzes
-			handleCompleteQuiz(title)
+			// 1. Remove local notification for today
+			clearLocalNotification().then(setLocalNotification)
 
 			// 2. Show the score
 			this.props.navigation.navigate('Score', { score: `${((this.state.numCorrect / this.state.numQuestions) * 100).toFixed(0)}%` })

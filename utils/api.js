@@ -15,7 +15,3 @@ export function deleteDeckBackend(deck) {
 export function addDeckBackend(title) {
 	return _addDeck(title)
 }
-
-export function completeQuizBackend(title) {
-	return _completeQuiz(title)
-}
