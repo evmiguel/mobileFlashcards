@@ -1,8 +1,6 @@
 import { AsyncStorage } from 'react-native'
-import { Notifications, Permissions } from 'expo'
 
 export const DECK_STORAGE_KEY = 'MobileCards:decks'
-const NOTIFICATION_KEY = 'MobileCards:notifications'
 
 let decks = {
   React: {

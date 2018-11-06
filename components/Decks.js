@@ -22,7 +22,7 @@ class Decks extends Component {
 					Object.keys(decks).map(deck => (
 						<TouchableOpacity key={deck} style={styles.deckItem} onPress={() => this.selectDeck(deck)}>
 							<Text style={styles.text}>{deck}</Text>
-							<Text>{decks[deck].questions.length} { decks[deck].questions.length === 1 ? 'card' : 'cards' }</Text>
+							<Text style={styles.cardsText}>{decks[deck].questions.length} { decks[deck].questions.length === 1 ? 'card' : 'cards' }</Text>
 						</TouchableOpacity>
 					))
 				}
@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
 		width: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderColor: '#000',
-		borderWidth: StyleSheet.hairlineWidth
 	},
 	text: {
-		textAlign: 'center',
-		fontSize: 30
+		fontSize: 30,
+		paddingBottom: 5
+	},
+	cardsText: {
+		fontSize: 20
 	}
 })
 

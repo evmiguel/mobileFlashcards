@@ -25,13 +25,16 @@ class Deck extends Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.info}>
-					<Text>{title}</Text>
-					<Text>{questions.length} { questions.length === 1 ? 'card' : 'cards'}</Text>
+					<Text style={styles.deckText}>{title}</Text>
+					<Text style={styles.cardText}>{questions.length} { questions.length === 1 ? 'card' : 'cards'}</Text>
 				</View>
 				<View style={styles.buttonContainer}>
 					<TextButton
 						onPress={() => navigation.navigate('AddCard', { deck: navigation.state.params.name })}
-						children='Add Card' />
+						children='Add Card'
+						style={styles.addButton}
+						textStyle={styles.addBtnText}
+					/>
 					<TextButton
 						onPress={() => navigation.navigate('Quiz', { questions: questions, title: navigation.state.params.name })}
 						children='Start Quiz' />
@@ -51,12 +54,32 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
+	deckText: {
+		fontSize: 30
+	},
+	cardText: {
+		fontSize: 20
+	},
 	info: {
 		alignItems: 'center',
 		marginBottom: 100
 	},
 	buttonContainer: {
 		alignItems: 'center'
+	},
+	addButton: {
+	    backgroundColor: '#fff',
+	    padding: 10,
+	    borderRadius: 5,
+	    borderColor: '#000',
+	    borderWidth: 1.5,
+	    height: 50,
+	    paddingLeft: 60,
+	    paddingRight: 60
+	},
+	addBtnText: {
+		fontSize: 22,
+    	textAlign: 'center'
 	}
 })
 
