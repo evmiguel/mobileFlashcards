@@ -5,6 +5,12 @@ import TextButton from './TextButton'
 import { handleAddCard } from '../actions/decks'
 
 class AddCard extends Component {
+	static navigationOptions = ({ navigation }) => {
+	    return {
+	      title: 'Add Card'
+	    }
+  	}
+
 	state = {
 		question: '',
 		answer: ''
@@ -35,11 +41,15 @@ class AddCard extends Component {
 	render() {
 		return(
 			<View style={styles.container}>
-				<TextInput placeholder="Type a question here!"
+				<View style={styles.inputContainer}>
+					<TextInput style={styles.input} placeholder="Type a question here!"
 					onChangeText={(text) => this.handleInput(text, 'question')}/>
-				<TextInput placeholder="Type the answer here!"
-					onChangeText={(text) => this.handleInput(text, 'answer')}/>
-				<TextButton onPress={this.submit} children='Submit'/>
+					<TextInput style={styles.input} placeholder="Type the answer here!"
+						onChangeText={(text) => this.handleInput(text, 'answer')}/>
+				</View>
+				<View style={styles.submitContainer}>
+					<TextButton style={styles.submit} textStyle={styles.submitText} onPress={this.submit} children='Submit'/>
+				</View>
 			</View>
 		)
 	}
@@ -48,8 +58,46 @@ class AddCard extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		paddingBottom: 50
+	},
+	inputContainer: {
+		width: '100%',
+		marginTop: 100,
 		alignItems: 'center'
+	},
+	input: {
+		padding: 10,
+	    borderRadius: 5,
+	    borderColor: '#000',
+	    borderWidth: 1.5,
+	    height: 50,
+	    width: '90%',
+	    marginBottom: 20,
+	    textAlign: 'left',
+	    backgroundColor: '#fff'
+	},
+	submitContainer: {
+		flex: 1,
+		flexDirection: 'row'
+	},
+	submit: {
+		alignSelf: 'flex-end',
+		padding: 10,
+	    borderRadius: 5,
+	    borderColor: '#000',
+	    borderWidth: 1.5,
+	    height: 50,
+	    paddingLeft: 60,
+	    paddingRight: 60,
+	    marginBottom: 20,
+	    backgroundColor: "#000"
+	},
+	submitText: {
+		color: "#fff",
+		fontSize: 22,
+    	textAlign: 'center'
 	}
 })
 
