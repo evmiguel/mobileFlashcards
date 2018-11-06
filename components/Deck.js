@@ -32,15 +32,20 @@ class Deck extends Component {
 					<TextButton
 						onPress={() => navigation.navigate('AddCard', { deck: navigation.state.params.name })}
 						children='Add Card'
-						style={styles.addButton}
-						textStyle={styles.addBtnText}
+						style={[styles.button, styles.addButton]}
+						textStyle={styles.btnText}
 					/>
 					<TextButton
 						onPress={() => navigation.navigate('Quiz', { questions: questions, title: navigation.state.params.name })}
-						children='Start Quiz' />
+						children='Start Quiz'
+						style={[styles.button, styles.quizButton]}
+						textStyle={[styles.btnText, styles.quizBtnText]}
+					/>
 					<TextButton
 						onPress={this.deleteDeck}
-						children='Delete Deck' />
+						children='Delete Deck'
+						textStyle={[styles.btnText, styles.deleteButtonText]}
+					/>
 				</View>
 			</View>
 		)
@@ -67,20 +72,33 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		alignItems: 'center'
 	},
-	addButton: {
-	    backgroundColor: '#fff',
-	    padding: 10,
+	button: {
+		padding: 10,
 	    borderRadius: 5,
 	    borderColor: '#000',
 	    borderWidth: 1.5,
 	    height: 50,
 	    paddingLeft: 60,
-	    paddingRight: 60
+	    paddingRight: 60,
+	    marginBottom: 20
 	},
-	addBtnText: {
+	addButton: {
+	    backgroundColor: '#fff',
+	},
+	btnText: {
 		fontSize: 22,
     	textAlign: 'center'
+	},
+	quizButton: {
+		backgroundColor: '#000',
+	},
+	quizBtnText: {
+		color: "#fff"
+	},
+	deleteButtonText: {
+		color: "#ce0808"
 	}
+
 })
 
 function mapStateToProps({ decks }, { navigation }){
