@@ -36,6 +36,12 @@ const DeckNavigator = createStackNavigator({
   }
 })
 
+const AddDeckNavigator = createStackNavigator({
+  AddDeck: {
+    screen: AddDeck
+  }
+})
+
 const MainNavigator = createBottomTabNavigator({
   DeckView: {
     screen: DeckNavigator,
@@ -44,8 +50,8 @@ const MainNavigator = createBottomTabNavigator({
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />
     }
   },
-  AddDeck: {
-    screen: AddDeck,
+  AddDeckView: {
+    screen: AddDeckNavigator,
     navigationOptions: {
       tabBarLabel: 'Add Deck',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='plus-box' size={30} color={tintColor} />
