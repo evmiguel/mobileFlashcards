@@ -17,9 +17,10 @@ class AddDeck extends Component {
 
 	submit = () => {
 		const { dispatch, navigation } = this.props
-		dispatch(handleAddDeck(this.state.deckName))
-		navigation.navigate('Decks')
-		this.handleInput('')
+		dispatch(handleAddDeck(this.state.deckName)).then(() => {
+			navigation.navigate('Deck', { name: this.state.deckName })
+			this.handleInput('')
+		})
 	}
 
 	render() {

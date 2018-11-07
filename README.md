@@ -1,5 +1,5 @@
 # Mobile Flashcards Project Submission
-This is Erika Miguel's submission for the Mobile Flashcards Project for the Udacity React Nanodegree program. This app was created with `create-react-native-app`
+This is Erika Miguel's submission for the Mobile Flashcards Project for the Udacity React Nanodegree program. This app was created with `create-react-native-app` and was tested on iOS Simulator, Android Simulator, and an Android Pixel 2.
 
 # Pre-requisites
 1. Install all app dependencies with `yarn install`
