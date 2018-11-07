@@ -90,27 +90,25 @@ class Quiz extends Component {
 				(questions.length > 0) ?
 					<View style={styles.quiz}>
 						<View style={styles.questions}>
-							<Text>{this.state.currentQuestionIndex + 1} / {this.state.numQuestions}</Text>
-							{
-								// TODO: Prepping for animation. This will become an Animated.View
-							}
+							<Text style={styles.questionTracker}>{this.state.currentQuestionIndex + 1} / {this.state.numQuestions}</Text>
 							{
 								this.state.showQuestion &&
 								<View>
-									<Text>{this.state.currentQuestion.question}</Text>
+									<Text style={[styles.questionText, styles.text]}>{this.state.currentQuestion.question}</Text>
 								</View>
 							}
 							{
 								this.state.showAnswer &&
 								<View>
-									<Text>{this.state.currentQuestion.answer}</Text>
+									<Text style={styles.text}>{this.state.currentQuestion.answer}</Text>
 								</View>
 							}
 							<TextButton
+								style={styles.showAnswerBtn}
 								children={this.state.showQuestion ? 'Answer' : 'Question'}
 								onPress={this.show} />
 						</View>
-						<View>
+						<View style={styles.buttonContainer}>
 							<TextButton
 								children='Correct'
 								onPress={() => this.updateScore('correct')} />
@@ -120,7 +118,7 @@ class Quiz extends Component {
 						</View>
 					</View>
 					:
-					<View style={styles.quiz}>
+					<View style={styles.noQuestionsContainer}>
 						<Text style={styles.noQuestionsText}>
 							Sorry, you cannot take the quiz because there are no cards in the deck.
 						</Text>
@@ -132,18 +130,51 @@ class Quiz extends Component {
 const styles = StyleSheet.create({
 	quiz: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center'
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		paddingTop: 50
 	},
 	questions: {
 		alignItems: 'center',
 		marginBottom: 50
+	},
+	questionTracker: {
+		fontSize: 15,
+		textAlign: 'center',
+		fontWeight: 'bold',
+		color: '#204060',
+		marginBottom: 15
+	},
+	questionText: {
+		fontWeight: '700'
+	},
+	text: {
+		fontSize: 30,
+		textAlign: 'center',
+	},
+	noQuestionsContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	noQuestionsText: {
 		fontSize: 25,
 		textAlign: 'center',
 		paddingLeft: 20,
 		paddingRight: 20
+	},
+	showAnswerBtn: {
+		padding: 10,
+	    borderRadius: 5,
+	    borderColor: '#000',
+	    borderWidth: 1.5,
+	    height: 50,
+	    width: '90%',
+	    marginBottom: 20,
+	    backgroundColor: '#fff'
+	},
+	buttonContainer: {
+		flex: 1
 	}
 
 })
