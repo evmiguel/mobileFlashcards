@@ -85,38 +85,46 @@ class Quiz extends Component {
 	}
 
 	render() {
+		const { questions } = this.props.navigation.state.params
 		return (
-			<View style={styles.quiz}>
-				<View style={styles.questions}>
-					<Text>{this.state.currentQuestionIndex + 1} / {this.state.numQuestions}</Text>
-					{
-						// TODO: Prepping for animation. This will become an Animated.View
-					}
-					{
-						this.state.showQuestion &&
-						<View>
-							<Text>{this.state.currentQuestion.question}</Text>
+				(questions.length > 0) ?
+					<View style={styles.quiz}>
+						<View style={styles.questions}>
+							<Text>{this.state.currentQuestionIndex + 1} / {this.state.numQuestions}</Text>
+							{
+								// TODO: Prepping for animation. This will become an Animated.View
+							}
+							{
+								this.state.showQuestion &&
+								<View>
+									<Text>{this.state.currentQuestion.question}</Text>
+								</View>
+							}
+							{
+								this.state.showAnswer &&
+								<View>
+									<Text>{this.state.currentQuestion.answer}</Text>
+								</View>
+							}
+							<TextButton
+								children={this.state.showQuestion ? 'Answer' : 'Question'}
+								onPress={this.show} />
 						</View>
-					}
-					{
-						this.state.showAnswer &&
 						<View>
-							<Text>{this.state.currentQuestion.answer}</Text>
+							<TextButton
+								children='Correct'
+								onPress={() => this.updateScore('correct')} />
+							<TextButton
+								children='Incorrect'
+								onPress={() => this.updateScore('incorrect')} />
 						</View>
-					}
-					<TextButton
-						children={this.state.showQuestion ? 'Answer' : 'Question'}
-						onPress={this.show} />
-				</View>
-				<View>
-					<TextButton
-						children='Correct'
-						onPress={() => this.updateScore('correct')} />
-					<TextButton
-						children='Incorrect'
-						onPress={() => this.updateScore('incorrect')} />
-				</View>
-			</View>
+					</View>
+					:
+					<View style={styles.quiz}>
+						<Text style={styles.noQuestionsText}>
+							Sorry, you cannot take the quiz because there are no cards in the deck.
+						</Text>
+					</View>
 		)
 	}
 }
@@ -130,7 +138,14 @@ const styles = StyleSheet.create({
 	questions: {
 		alignItems: 'center',
 		marginBottom: 50
+	},
+	noQuestionsText: {
+		fontSize: 25,
+		textAlign: 'center',
+		paddingLeft: 20,
+		paddingRight: 20
 	}
+
 })
 
 export default Quiz
