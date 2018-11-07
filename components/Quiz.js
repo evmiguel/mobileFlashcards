@@ -79,7 +79,7 @@ class Quiz extends Component {
 			clearLocalNotification().then(setLocalNotification)
 
 			// 2. Show the score
-			this.props.navigation.navigate('Score', { score: `${((this.state.numCorrect / this.state.numQuestions) * 100).toFixed(0)}%` })
+			this.props.navigation.navigate('Score', { deck: this.props.navigation.state.params.title, score: `${((this.state.numCorrect / this.state.numQuestions) * 100).toFixed(0)}%` })
 			this.reset()
 		}
 	}
