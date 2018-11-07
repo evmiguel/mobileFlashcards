@@ -94,25 +94,32 @@ class Quiz extends Component {
 							{
 								this.state.showQuestion &&
 								<View>
-									<Text style={[styles.questionText, styles.text]}>{this.state.currentQuestion.question}</Text>
+									<Text style={[styles.questionText, styles.text, {marginBottom:20}]}>{this.state.currentQuestion.question}</Text>
 								</View>
 							}
 							{
 								this.state.showAnswer &&
 								<View>
-									<Text style={styles.text}>{this.state.currentQuestion.answer}</Text>
+									<Text style={[styles.text, {marginBottom:20}]}>{this.state.currentQuestion.answer}</Text>
 								</View>
 							}
-							<TextButton
-								style={styles.showAnswerBtn}
-								children={this.state.showQuestion ? 'Answer' : 'Question'}
-								onPress={this.show} />
+							<View style={styles.showAnswer}>
+								<TextButton
+									style={styles.button}
+									textStyle={[styles.text, styles.buttonText]}
+									children={this.state.showQuestion ? 'Answer' : 'Question'}
+									onPress={this.show} />
+							</View>
 						</View>
 						<View style={styles.buttonContainer}>
 							<TextButton
+								style={[styles.button, {backgroundColor: '#146800'}]}
+								textStyle={[styles.text, styles.buttonText, { color: '#fff', fontWeight: 'bold'}]}
 								children='Correct'
 								onPress={() => this.updateScore('correct')} />
 							<TextButton
+								style={[styles.button, {backgroundColor: '#ce0808'}]}
+								textStyle={[styles.text, styles.buttonText, { color: '#fff', fontWeight: 'bold'}]}
 								children='Incorrect'
 								onPress={() => this.updateScore('incorrect')} />
 						</View>
@@ -132,11 +139,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		paddingTop: 50
+		marginTop: 100,
+		marginBottom: 100
 	},
 	questions: {
 		alignItems: 'center',
-		marginBottom: 50
+		marginBottom: 50,
+
 	},
 	questionTracker: {
 		fontSize: 15,
@@ -149,7 +158,7 @@ const styles = StyleSheet.create({
 		fontWeight: '700'
 	},
 	text: {
-		fontSize: 30,
+		fontSize: 25,
 		textAlign: 'center',
 	},
 	noQuestionsContainer: {
@@ -163,18 +172,27 @@ const styles = StyleSheet.create({
 		paddingLeft: 20,
 		paddingRight: 20
 	},
-	showAnswerBtn: {
+	showAnswer: {
+		flexDirection: 'row'
+	},
+	buttonText: {
+		fontSize: 20,
+	},
+	button: {
 		padding: 10,
 	    borderRadius: 5,
 	    borderColor: '#000',
 	    borderWidth: 1.5,
-	    height: 50,
-	    width: '90%',
+	    height: 45,
+	    width: '40%',
 	    marginBottom: 20,
 	    backgroundColor: '#fff'
 	},
 	buttonContainer: {
-		flex: 1
+		flex: 1,
+		width: '100%',
+		justifyContent: 'flex-end',
+		alignItems: 'center'
 	}
 
 })
